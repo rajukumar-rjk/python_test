@@ -1,0 +1,65 @@
+$def with (page)
+
+$var css: static/css/bootstrap.min.css static/css/register.css
+$var js: static/js/jquery-3.1.1.min.js static/js/bootstrap.min.js  static/js/web/register.js
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Python Code </title>
+
+        $if self.css:
+            $for style in self.css.split():
+                <link rel="stylesheet" href="$style" />
+
+        $if self.js:
+            $for javascript in self.js.split():
+               <script src="$javascript"></script>
+
+
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+    </head>
+
+    <body class = "background-dark" >
+        <div id="app">
+                <div  role="navigation" class="nav navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand">Brand</a>
+                    </div>
+                    <!-- Collection of nav links and other content for toggling -->
+                    <div id="navbarCollapse" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Messages</a></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            $if session['user'] == None:
+                                <li><a href="/login"><button class="btn">Login</button></a></li>
+                                <li><a href="/register"><button class="btn btn-primary">Register</button></a></li>
+                            $else:
+                                <li><a href="/login" id = "logout-link" ><button class="btn">Logout</button></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            $:page
+        </div>
+    </body>
+</html>
