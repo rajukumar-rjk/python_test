@@ -14,6 +14,9 @@ urls = (
 )
 
 
+
+
+
 app = web.application(urls, globals())
 session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'user': None})
 
